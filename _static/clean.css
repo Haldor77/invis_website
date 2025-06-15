@@ -1,0 +1,26 @@
+/* Remove all margins and padding */
+* {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Full width content */
+.bd-main .bd-content {
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+/* Hide navigation */
+.bd-sidebar {
+    display: none !important;
+}
+
+/* Clean body */
+body {
+    background: white !important;
+}
+
+/* Remove headers/footers */
+.bd-header, .bd-footer {
+    display: none !important;
+}

@@ -1,0 +1,24 @@
+title: My Clean Book
+author: Your Name
+
+# Minimal execution settings
+execute:
+  execute_notebooks: off  # or 'force' if you want to run notebooks
+
+# Clean HTML output
+html:
+  use_issues_button: false
+  use_repository_button: false
+  use_edit_page_button: false
+  
+# Minimal sphinx config
+sphinx:
+  config:
+    html_theme_options:
+      show_navbar_depth: 0
+      navbar_end: []
+      footer_items: []
+sphinx:
+  config:
+    html_static_path: ['_static']
+    html_css_files: ['clean.css']
