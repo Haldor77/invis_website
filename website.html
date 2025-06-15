@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Impact of CO₂ Emissions on Healthy Life Expectancy at Birth Per Country (2000–2021)</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav>
+  <h2>Contents</h2>
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#dataset">Dataset and Preprocessing</a></li>
+    <li><a href="#perspective1">Perspective 1</a></li>
+    <li><a href="#perspective2">Perspective 2</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+<main>
+<h1>The Impact of CO₂ Emissions on Healthy Life Expectancy at Birth Per Country (2000–2021)</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Climate change and public health are increasingly intertwined topics. A key question is whether rising CO₂ emissions – largely from burning fossil fuels – are hurting human health and reducing how long people live healthy lives. This data story explores the impact of CO₂ emissions on healthy life expectancy at birth across countries from 2000 to 2021. We examine two contrasting perspectives:</p>
+<h3>Perspective 1</h3>
+<p>Higher CO₂ emissions harm population health and lead to lower life expectancy. Proponents argue that pollution and climate change resulting from carbon emissions directly undermine health. For example, air pollution (mostly from fossil fuel combustion) is estimated to cut average global life expectancy by over 2 years and even 5+ years in the most polluted regions. From this view, countries with high emissions might suffer more chronic diseases and shorter healthy lifespans due to poorer air quality and climate-related stresses.</p>
+<h3>Perspective 2</h3>
+<p>There is no direct relationship between CO₂ emissions and healthy life expectancy; longevity is driven more by healthcare, wealth, and infrastructure. Advocates of this view note that the world’s richest, longest-living populations often reside in high-emission countries benefiting from industrialization and economic growth. Life expectancy improvements over the last decades have coincided with rising emissions, suggesting other factors play a larger role than emissions. According to this perspective, improving healthcare access and living standards can raise healthy life expectancy regardless of CO₂ output, and environmental measures can be pursued without sacrificing health or longevity.</p>
+<p>In the following sections, we introduce the datasets and then present visual evidence for each perspective. The goal is to understand whether CO₂ emissions are correlated with healthy life expectancy and to untangle the influence of development and policy factors.</p>
+<h2 id="dataset">Dataset and Preprocessing</h2>
+<p>To investigate this issue, we combined two primary datasets:</p>
+<p><strong>CO₂ Emissions Dataset (Our World in Data):</strong> A comprehensive country-year dataset of CO₂ emissions. It includes metrics such as annual emissions, emissions per capita, and cumulative emissions. We specifically use <em>co2_per_capita</em> and <em>cumulative_co2</em>. We also have country identifiers like iso_code and the year for merging.</p>
+<p><strong>Healthy Life Expectancy Dataset (WHO):</strong> Country-level data on healthy life expectancy at birth. Healthy life expectancy (HALE) is defined as “the average number of years that a person can expect to live in full health from birth,” accounting for years lived in less than full health due to disease or injury. We use the variable <em>healthy_life_expectancy_at_birth</em> (in years) for both sexes combined.</p>
+<p>Both datasets span multiple decades. For this analysis, we filtered data to five reference years: 2000, 2010, 2015, 2019, and 2021. These snapshots allow us to observe long-term trends while focusing on a manageable number of points. We chose 2019 as the last pre-pandemic year and 2021 as an initial post-COVID year to see any recent changes.</p>
+<p>We performed several preprocessing steps to merge the data:</p>
+<ul>
+<li>Filtering years to the selected snapshots.</li>
+<li>Selecting the indicators mentioned above.</li>
+<li>Cleaning country names and removing aggregate entries.</li>
+<li>Joining the datasets on country and year and dropping records with missing values.</li>
+</ul>
+<p>Below is a Python snippet illustrating the preprocessing using pandas (not shown here). After merging, the resulting data frame contains CO₂ emissions per capita, cumulative emissions, and healthy life expectancy at birth for each country and year. This forms the basis for our visual analysis.</p>
+<h2 id="perspective1">Perspective 1: Do Higher CO₂ Emissions Shorten Healthy Lifespans?</h2>
+<p>This perspective expects to see negative correlations or warning signs that pollution from CO₂ emissions adversely affects health. We look for evidence that countries with higher emissions have lower healthy life expectancy, or that rapid emission growth is associated with stagnating health outcomes.</p>
+<p><strong>Visualization 1:</strong> CO₂ per Capita vs Healthy Life Expectancy (2019) – Is higher carbon output linked to lower healthy life expectancy?</p>
+<p>Each point is a country in 2019. We might expect a downward trend if emissions were broadly harming health, but the pattern is not clear-cut. Many high-emission countries actually enjoy high healthy life expectancy, while low-emission countries often have low healthy life expectancy. The fitted trendline is nearly flat, indicating no strong linear relationship globally.</p>
+<p>At a global level, there is no obvious negative correlation between CO₂ emissions per person and healthy life expectancy. For example, the United States and Gulf countries have some of the highest per-capita CO₂ emissions yet still report healthy life expectancies around 65–70+ years. In contrast, countries with minimal emissions (mostly low-income nations) cluster in the lower-left, with healthy life expectancy often below 60 years. This suggests that factors other than emissions, such as economic development, dominate health outcomes. Supporters of this perspective note, however, that pollution may still impose health costs that are obscured in this global view.</p>
+<p><strong>Visualization 2:</strong> Emissions and Health in Selected Countries (2019) – Case comparison of a high emitter vs. a low emitter vs. a moderate emitter.</p>
+<p>This bar chart contrasts CO₂ emissions per capita with healthy life expectancy for three example countries in 2019. The United States emits far more CO₂ per person (≈15 tons) than France (≈5 tons) or India (&lt;2 tons). Yet, Americans have a shorter healthy life expectancy (~66 years) than the French (~72 years). Indians have a much lower healthy lifespan (~60 years) alongside very low emissions.</p>
+<p>The comparison highlights that more emissions do not guarantee better health. The U.S. vs France gap is telling: Americans emit about three times more CO₂ per capita, but enjoy roughly six fewer healthy years on average than the French. This could be due to pollution or other lifestyle and healthcare differences. Meanwhile, India’s very low emissions come with low healthy life expectancy, primarily due to poverty and limited healthcare. This case study suggests that beyond a certain point, increasing emissions is associated with diminishing health returns.</p>
+<p><strong>Visualization 3:</strong> Air Quality and Health Trend – China as a Case (2000–2021) – Does rapid emission growth slow health progress?</p>
+<p>This line chart shows China’s CO₂ emissions per capita and healthy life expectancy at birth from 2000 to 2021. China’s CO₂ per person surged dramatically, while healthy life expectancy also rose steadily. Advocates of perspective 1 argue that health gains could have been even greater without heavy air pollution accompanying China’s coal-driven boom. In the 2010s, China enacted aggressive clean air policies. The curve of CO₂ per capita leveled off slightly toward 2019, and pollution levels in cities started dropping, which may help future health outcomes. The overall evidence suggests that high emissions impose hidden costs even if health improves.</p>
+<h2 id="perspective2">Perspective 2: Are Other Factors More Important than Emissions for Life Expectancy?</h2>
+<p>Perspective 2 suggests that development and public health infrastructure drive healthy lifespan, not emissions per se. If this is true, we expect to see that as countries get wealthier (often accompanied by more emissions), their healthy life expectancy increases. The following visuals explore these patterns.</p>
+<p><strong>Visualization 4:</strong> Historical CO₂ Emissions vs Healthy Life Expectancy – Do countries that industrialized (high historic emissions) have longer healthy lives?</p>
+<p>Each point is a country in 2019, plotting total historical CO₂ emitted on a log scale against healthy life expectancy. A clear upward trend emerges: countries with a larger cumulative CO₂ footprint tend to have higher healthy life expectancy.</p>
+<p>This chart reveals a strong positive association: nations that have emitted the most CO₂ over history – typically more developed economies – almost all enjoy high healthy life expectancies (70+ years). Conversely, countries with negligible historical emissions generally have shorter healthy lives. This does not mean emitting CO₂ causes people to live longer; rather, industrialization and development that came with emissions enabled better health outcomes. The implication is that life expectancy can rise alongside emissions if development is occurring.</p>
+<p><strong>Visualization 5:</strong> Emissions vs Healthy Life Expectancy Over Time (Interactive) – How have emissions and health evolved together from 2000 to 2021?</p>
+<p>This interactive bubble chart shows countries moving from 2000 to 2021. Bubbles typically drift upwards and to the right over time, meaning both CO₂ emissions per capita and healthy life expectancy have increased in tandem for many countries.</p>
+<p>The animation reinforces that in the last two decades, life expectancy improvements often coincided with rising emissions. Developing countries with lower starting health and emissions move markedly upward as they industrialize. Most high-income countries were already in the upper-right and tend to inch further up even as their emissions per capita plateau or decline slightly. This suggests that improving medical care, sanitation, education, and incomes has a more immediate effect on health than potential harms from CO₂.</p>
+<p><strong>Visualization 6:</strong> Global Overview: Emissions and Health by Country (2019) – Who has high emissions, and who lives long and healthy?</p>
+<p>In this world map, bubble size represents CO₂ emissions per capita and color represents healthy life expectancy. We see large bubbles concentrated in North America, the Middle East, and parts of Asia/Oceania, whereas small bubbles cover most of Africa and South Asia. Crucially, many large bubbles are colored blue or purple – for example, the US, Canada, Australia, and Gulf states have high HALE despite high emissions. In contrast, the smallest bubbles in sub-Saharan Africa are often yellowish, showing low healthy life expectancy.</p>
+<p>This global view underscores that long healthy lives are achieved across a range of emission levels, and the worst health outcomes are mostly in low-emission, low-income countries. High emissions per capita are primarily a feature of wealthy nations and oil producers – these countries generally have the infrastructure for high life expectancy. Meanwhile, countries with the shortest healthy lifespans are poor and emit very little CO₂. This pattern supports the idea that economic and health system development are the dominant factors for healthy life expectancy, not CO₂ levels.</p>
+<h2 id="conclusion">Conclusion (Interim)</h2>
+<p>In this draft analysis, we explored the relationship between CO₂ emissions and healthy life expectancy from two angles. The data demonstrates that there is no simple cause-and-effect where more emissions directly translate to shorter healthy lives – in fact, historically, high-emission countries have achieved long lifespans thanks to development. However, emissions are not benign: the hidden toll of pollution is real, and climate change poses looming health risks. Societies can strive to maintain and improve healthy life expectancy by investing in healthcare and cleaner technologies simultaneously, ensuring that reducing CO₂ emissions goes hand in hand with positive health outcomes.</p>
+</main>
+</body>
+</html>
